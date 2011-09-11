@@ -1,0 +1,15 @@
+(detector
+    (extension lua))
+
+(folding
+    (start `^\s*\b(function|local\s+function|if|for)\b|{[ \t]*$|\[\[`)
+    (stop `\bend\b|^\s*}|\]\]`))
+
+(shell-variables
+    (TM_COMMENT_START [-- ]))
+
+(comment.line [-- ])
+
+(indentation.decrease [^\s*(elseif|else|end|\})\s*$])
+
+(indentation.increase [^\s*(else|elseif|for|(local\s+)?function|if|repeat|until|while)\b((?!end).)*$|\{\s*$])

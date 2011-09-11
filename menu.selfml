@@ -1,0 +1,1 @@
+(menu command.run-lua [command.run-script-(terminal)] --- snippet.local-x-=-1 --- [snippet.for-i,v-in-ipairs()] [snippet.for-k,v-in-pairs()] snippet.for-i=1,10 --- [snippet.function-(fun)] [snippet.function-(function)] --- snippet.table.sort snippet.table.concat)

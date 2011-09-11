@@ -1,0 +1,8 @@
+(name [local x = 1])
+
+(trigger
+    (tab local))
+
+(only-in source.lua)
+
+(snippet [local %{1="x"} = %{0="1"}])

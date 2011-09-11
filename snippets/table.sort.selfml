@@ -1,0 +1,8 @@
+(name table.sort)
+
+(trigger
+    (tab table.sort))
+
+(only-in source.lua)
+
+(snippet [table.sort( %{1="tablename"}%{2=", sortfunction"} )])

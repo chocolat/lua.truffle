@@ -1,0 +1,16 @@
+(trigger
+    (key [[cmd]R]))
+
+(name [Run Script])
+
+(only-in source.lua)
+
+(input nothing)
+
+(output html)
+
+(save file)
+
+(script [: ${TM_LUA:=lua}
+require_cmd "$TM_LUA"
+"$TM_LUA" "$TM_FILEPATH"|pre])

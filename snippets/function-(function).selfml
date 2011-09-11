@@ -1,0 +1,10 @@
+(name function)
+
+(trigger
+    (tab function))
+
+(only-in source.lua)
+
+(snippet [function %{1="function_name"}( %{2="..."} )
+	%{0="-- body"}
+end])

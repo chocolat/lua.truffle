@@ -1,0 +1,10 @@
+(name [for i,v in ipairs()])
+
+(trigger
+    (tab fori))
+
+(only-in source.lua)
+
+(snippet [for %{1="i"},%{2="v"} in ipairs(%{3="table_name"}) do
+	%{0="print(i,v)"}
+end])

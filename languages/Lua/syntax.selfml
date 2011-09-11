@@ -1,0 +1,76 @@
+(root source.lua
+    (zone meta.function.lua
+        (match
+            (regex [\b(function)\s+([a-zA-Z_.:]+[.:])?([a-zA-Z_]\w*)\s*(\()([^)]*)(\))]
+                (3 entity.name.function.lua)
+                (4 punctuation.definition.parameters.begin.lua)
+                (5 variable.parameter.function.lua)
+                (1 keyword.control.lua)
+                (6 punctuation.definition.parameters.end.lua)
+                (2 entity.name.function.scope.lua))))
+    (zone constant.numeric.lua
+        (match
+            (regex [(?<![\d.])\s0x[a-fA-F\d]+|\b\d+(\.\d+)?([eE]-?\d+)?|\.\d+([eE]-?\d+)?])))
+    (zone string.quoted.single.lua
+        (start
+            (regex '
+                (0 punctuation.definition.string.begin.lua)))
+        (end
+            (regex '
+                (0 punctuation.definition.string.end.lua)))
+        (subzones
+            (zone constant.character.escape.lua
+                (match
+                    (regex \\.)))))
+    (zone string.quoted.double.lua
+        (start
+            (regex "
+                (0 punctuation.definition.string.begin.lua)))
+        (end
+            (regex "
+                (0 punctuation.definition.string.end.lua)))
+        (subzones
+            (zone constant.character.escape.lua
+                (match
+                    (regex \\.)))))
+    (zone string.quoted.other.multiline.lua
+        (start
+            (regex `(?<!--)\[(=*)\[`
+                (0 punctuation.definition.string.begin.lua)))
+        (end
+            (regex `\]\1\]`
+                (0 punctuation.definition.string.end.lua))))
+    (zone comment.block.lua
+        (start
+            (regex `--\[(=*)\[`
+                (0 punctuation.definition.comment.lua)))
+        (end
+            (regex `\]\1\]`
+                (0 punctuation.definition.comment.lua))))
+    (zone comment.line.double-dash.lua
+        (match
+            (regex `(--)(?!\[\[).*$\n?`
+                (1 punctuation.definition.comment.lua))))
+    (zone keyword.control.lua
+        (match
+            (list break do else for if elseif return then repeat while until end function local in)
+            (boundary.both)))
+    (zone constant.language.lua
+        (match
+            (regex [(?<![^.]\.|:)\b(false|nil|true|_G|_VERSION|math\.(pi|huge))\b|(?<![.])\.{3}(?!\.)])))
+    (zone variable.language.self.lua
+        (match
+            (regex [(?<![^.]\.|:)\b(self)\b])))
+    (zone support.function.lua
+        (match
+            (regex [(?<![^.]\.|:)\b(assert|collectgarbage|dofile|error|getfenv|getmetatable|ipairs|loadfile|loadstring|module|next|pairs|pcall|print|rawequal|rawget|rawset|require|select|setfenv|setmetatable|tonumber|tostring|type|unpack|xpcall)\b(?=[( {])])))
+    (zone support.function.library.lua
+        (match
+            (regex [(?<![^.]\.|:)\b(coroutine\.(create|resume|running|status|wrap|yield)|string\.(byte|char|dump|find|format|gmatch|gsub|len|lower|match|rep|reverse|sub|upper)|table\.(concat|insert|maxn|remove|sort)|math\.(abs|acos|asin|atan2?|ceil|cosh?|deg|exp|floor|fmod|frexp|ldexp|log|log10|max|min|modf|pow|rad|random|randomseed|sinh?|sqrt|tanh?)|io\.(close|flush|input|lines|open|output|popen|read|tmpfile|type|write)|os\.(clock|date|difftime|execute|exit|getenv|remove|rename|setlocale|time|tmpname)|package\.(cpath|loaded|loadlib|path|preload|seeall)|debug\.(debug|[gs]etfenv|[gs]ethook|getinfo|[gs]etlocal|[gs]etmetatable|getregistry|[gs]etupvalue|traceback))\b(?=[( {])])))
+    (zone keyword.operator.lua
+        (match
+            (list and or)
+            (boundary.both)))
+    (zone keyword.operator.lua
+        (match
+            (regex [\+|-|%|#|\*|\/|\^|==?|~=|<=?|>=?|(?<!\.)\.{2}(?!\.)]))))

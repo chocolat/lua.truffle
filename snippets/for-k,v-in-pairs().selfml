@@ -1,0 +1,10 @@
+(name [for k,v in pairs()])
+
+(trigger
+    (tab forp))
+
+(only-in source.lua)
+
+(snippet [for %{1="k"},%{2="v"} in pairs(%{3="table_name"}) do
+	%{0="print(k,v)"}
+end])
